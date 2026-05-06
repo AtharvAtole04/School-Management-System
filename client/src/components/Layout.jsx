@@ -35,6 +35,7 @@ export default function Layout({ children }) {
           <Nav to="/add-student" text="Add Student" />
           <Nav to="/students" text="Students" />
           <Nav to="/payments" text="Payments" />
+          <Nav to="/login" text="Logout" />
         </aside>
 
         {/* Content */}

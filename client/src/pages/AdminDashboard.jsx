@@ -1,114 +1,202 @@
 import Layout from "../components/Layout";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <div>
-        <h1 style={{ color: "#0f172a", marginBottom: "8px" }}>
+        <h1 style={heading}>
           Dashboard Overview
         </h1>
 
-        <p style={{ color: "#64748b", marginBottom: "25px" }}>
-          Manage school fees, students and payments efficiently.
+        <p style={subHeading}>
+          Manage school operations,
+          students, fees and academic records.
         </p>
 
-        {/* Cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
-            gap: "20px"
-          }}
-        >
-          <Card title="Total Students" value="120" color="#3b82f6" />
-          <Card title="Fees Collected" value="₹5,40,000" color="#10b981" />
-          <Card title="Pending Fees" value="₹1,20,000" color="#f59e0b" />
-          <Card title="Today's Payments" value="18" color="#8b5cf6" />
+        {/* Stats */}
+        <div style={grid}>
+          <StatCard
+            title="Total Students"
+            value="1200"
+            color="#2563eb"
+          />
+
+          <StatCard
+            title="Fees Collected"
+            value="₹5,40,000"
+            color="#16a34a"
+          />
+
+          <StatCard
+            title="Pending Fees"
+            value="₹1,20,000"
+            color="#f59e0b"
+          />
+
+          <StatCard
+            title="Today's Payments"
+            value="18"
+            color="#9333ea"
+          />
         </div>
 
-        {/* Middle Grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr",
-            gap: "20px",
-            marginTop: "30px"
-          }}
-        >
-          <Box title="Recent Payments">
-            <p>Rahul Patil - ₹5,000</p>
-            <p>Aarav Sharma - ₹8,000</p>
-            <p>Priya More - ₹3,000</p>
-          </Box>
+        {/* Functional Admin Actions */}
+        <h2 style={sectionTitle}>
+          Admin Controls
+        </h2>
 
-          <Box title="Announcements">
-            <p>• Fee deadline: 30 April</p>
-            <p>• Parent meeting Saturday</p>
-            <p>• Receipt system updated</p>
-          </Box>
+        <div style={actionGrid}>
+          <ActionCard
+            icon="➕"
+            text="Add Notice"
+            onClick={() =>
+              navigate("/add-notice")
+            }
+          />
+
+          <ActionCard
+            icon="📝"
+            text="Student Info"
+            onClick={() =>
+              navigate("/students")
+            }
+          />
+
+          <ActionCard
+            icon="📊"
+            text="Performance"
+            onClick={() =>
+              navigate("/performance")
+            }
+          />
+
+          <ActionCard
+            icon="📢"
+            text="School Updates"
+            onClick={() =>
+              navigate("/school-updates")
+            }
+          />
+
+          <ActionCard
+            icon="💳"
+            text="Manage Fees"
+            onClick={() =>
+              navigate("/payments")
+            }
+          />
+
+          <ActionCard
+            icon="🚌"
+            text="Transport"
+            onClick={() =>
+              navigate("/transport")
+            }
+          />
         </div>
-
-        {/* Progress */}
-        <Box title="Collection Progress" mt="30px">
-          <p>Monthly Target: ₹7,00,000</p>
-
-          <div
-            style={{
-              height: "18px",
-              background: "#e2e8f0",
-              borderRadius: "10px",
-              overflow: "hidden",
-              marginTop: "10px"
-            }}
-          >
-            <div
-              style={{
-                width: "77%",
-                height: "100%",
-                background: "#10b981"
-              }}
-            />
-          </div>
-
-          <p style={{ marginTop: "10px", color: "#64748b" }}>
-            ₹5,40,000 collected
-          </p>
-        </Box>
       </div>
     </Layout>
   );
 }
 
-function Card({ title, value, color }) {
+/* Components */
+
+function StatCard({
+  title,
+  value,
+  color
+}) {
   return (
     <div
       style={{
         background: "white",
         padding: "22px",
-        borderRadius: "14px",
-        borderLeft: `6px solid ${color}`,
-        boxShadow: "0 6px 14px rgba(0,0,0,0.05)"
+        borderRadius: "16px",
+        borderTop: `5px solid ${color}`,
+        boxShadow:
+          "0 8px 18px rgba(0,0,0,0.05)"
       }}
     >
-      <p style={{ color: "#64748b", margin: 0 }}>{title}</p>
-      <h2 style={{ marginTop: "10px" }}>{value}</h2>
+      <p style={{ color: "#64748b" }}>
+        {title}
+      </p>
+
+      <h2>{value}</h2>
     </div>
   );
 }
 
-function Box({ title, children, mt }) {
+function ActionCard({
+  icon,
+  text,
+  onClick
+}) {
   return (
-    <section
-      style={{
-        marginTop: mt || "0",
-        background: "white",
-        padding: "22px",
-        borderRadius: "14px",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
-      }}
+    <div
+      style={actionCard}
+      onClick={onClick}
     >
-      <h3 style={{ marginTop: 0, marginBottom: "14px" }}>{title}</h3>
-      {children}
-    </section>
+      <div
+        style={{
+          fontSize: "30px",
+          marginBottom: "12px"
+        }}
+      >
+        {icon}
+      </div>
+
+      <p
+        style={{
+          margin: 0,
+          fontWeight: "600"
+        }}
+      >
+        {text}
+      </p>
+    </div>
   );
 }
+
+/* Styles */
+
+const heading = {
+  color: "#0f172a",
+  marginBottom: "8px"
+};
+
+const subHeading = {
+  color: "#64748b",
+  marginBottom: "25px"
+};
+
+const sectionTitle = {
+  marginBottom: "20px"
+};
+
+const grid = {
+  display: "grid",
+  gridTemplateColumns:
+    "repeat(auto-fit,minmax(220px,1fr))",
+  gap: "20px",
+  marginBottom: "30px"
+};
+
+const actionGrid = {
+  display: "grid",
+  gridTemplateColumns:
+    "repeat(auto-fit,minmax(220px,1fr))",
+  gap: "20px"
+};
+
+const actionCard = {
+  background: "white",
+  padding: "24px",
+  borderRadius: "18px",
+  textAlign: "center",
+  cursor: "pointer",
+  boxShadow:
+    "0 8px 18px rgba(0,0,0,0.05)"
+};

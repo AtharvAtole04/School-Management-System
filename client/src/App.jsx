@@ -11,6 +11,10 @@ import StudentDashboard from "./pages/StudentDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ParentPayments from "./pages/ParentPayments";
 import ParentPay from "./pages/ParentPay";
+import AddNotice from "./pages/add-notice";
+import Performance from "./pages/performance";
+import SchoolUpdates from "./pages/school-updates";
+import Transport from "./pages/transport";
 
 function App() {
   return (
@@ -35,6 +39,8 @@ function App() {
   }
 />
 
+
+
 <Route
   path="/add-student"
   element={
@@ -49,6 +55,51 @@ function App() {
   element={
     <ProtectedRoute allowedRole="admin">
       <PaymentHistory />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/add-notice"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <AddNotice />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/performance"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <Performance />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/school-updates"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <SchoolUpdates />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/transport"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <Transport />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/transport"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <Transport />
     </ProtectedRoute>
   }
 />
