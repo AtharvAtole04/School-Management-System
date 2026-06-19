@@ -11,6 +11,16 @@ import StudentDashboard from "./pages/StudentDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ParentPayments from "./pages/ParentPayments";
 import ParentPay from "./pages/ParentPay";
+import AddNotice from "./pages/add-notice";
+import Performance from "./pages/performance";
+import SchoolUpdates from "./pages/school-updates";
+import Transport from "./pages/transport";
+import RegisterParent from "./pages/RegisterParent";
+import RegisterStudent from "./pages/RegisterStudent";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import VerifyEmail from "./pages/VerifyEmail";
+import AdminApprovals from "./pages/AdminApprovals";
 
 function App() {
   return (
@@ -35,6 +45,8 @@ function App() {
   }
 />
 
+
+
 <Route
   path="/add-student"
   element={
@@ -49,6 +61,51 @@ function App() {
   element={
     <ProtectedRoute allowedRole="admin">
       <PaymentHistory />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/add-notice"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <AddNotice />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/performance"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <Performance />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/school-updates"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <SchoolUpdates />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/transport"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <Transport />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/transport"
+  element={
+    <ProtectedRoute allowedRole="admin">
+      <Transport />
     </ProtectedRoute>
   }
 />
@@ -88,6 +145,23 @@ function App() {
     </ProtectedRoute>
   }
 />
+        {/* Auth routes */}
+        <Route path="/register-parent" element={<RegisterParent />} />
+        <Route path="/register-student" element={<RegisterStudent />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/verify-email/:token" element={<VerifyEmail />} />
+
+        {/* Admin Approvals Route */}
+        <Route
+          path="/admin/approvals"
+          element={
+            <ProtectedRoute allowedRole="admin">
+              <AdminApprovals />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/add-student" element={<AddStudent />} />
         <Route path="/students" element={<ViewStudents />} />
         <Route path="/edit-student/:id" element={<EditStudent />} />
