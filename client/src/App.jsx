@@ -15,6 +15,12 @@ import AddNotice from "./pages/add-notice";
 import Performance from "./pages/performance";
 import SchoolUpdates from "./pages/school-updates";
 import Transport from "./pages/transport";
+import RegisterParent from "./pages/RegisterParent";
+import RegisterStudent from "./pages/RegisterStudent";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import VerifyEmail from "./pages/VerifyEmail";
+import AdminApprovals from "./pages/AdminApprovals";
 
 function App() {
   return (
@@ -139,6 +145,23 @@ function App() {
     </ProtectedRoute>
   }
 />
+        {/* Auth routes */}
+        <Route path="/register-parent" element={<RegisterParent />} />
+        <Route path="/register-student" element={<RegisterStudent />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/verify-email/:token" element={<VerifyEmail />} />
+
+        {/* Admin Approvals Route */}
+        <Route
+          path="/admin/approvals"
+          element={
+            <ProtectedRoute allowedRole="admin">
+              <AdminApprovals />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/add-student" element={<AddStudent />} />
         <Route path="/students" element={<ViewStudents />} />
         <Route path="/edit-student/:id" element={<EditStudent />} />

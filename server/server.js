@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const studentRoutes = require("./routes/studentRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const noticeRoutes = require("./routes/noticeRoutes");
 
 dotenv.config();
@@ -27,6 +28,7 @@ app.use(
 app.use("/api/students", studentRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
 app.use(
   "/api/notices",
   require("./routes/noticeRoutes")

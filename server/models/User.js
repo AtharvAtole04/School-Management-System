@@ -28,6 +28,43 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Student",
       default: null
+    },
+
+    parentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Parent",
+      default: null
+    },
+
+    isVerified: {
+      type: Boolean,
+      default: false
+    },
+
+    isApproved: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending"
+    },
+
+    verificationToken: {
+      type: String,
+      default: null
+    },
+
+    verificationExpiry: {
+      type: Date,
+      default: null
+    },
+
+    resetToken: {
+      type: String,
+      default: null
+    },
+
+    resetTokenExpiry: {
+      type: Date,
+      default: null
     }
   },
   { timestamps: true }

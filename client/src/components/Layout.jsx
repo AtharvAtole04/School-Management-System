@@ -32,6 +32,7 @@ export default function Layout({ children }) {
           }}
         >
           <Nav to="/" text="Dashboard" />
+          <Nav to="/admin/approvals" text="User Approvals" />
           <Nav to="/add-student" text="Add Student" />
           <Nav to="/students" text="Students" />
           <Nav to="/payments" text="Payments" />
